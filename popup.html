@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roblox Account Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <img src="icons/roblox.png" alt="Roblox" class="header-logo">
+                Account Manager
+            </h1>
+            <div class="header-actions">
+                <button id="saveCurrentAccount" class="btn btn-primary" title="Save Current Account">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Save Current
+                </button>
+            </div>
+        </div>
+
+        <div class="add-account">
+            <div class="input-group">
+                <input type="text" id="accountInput" placeholder="Username|Password|Cookie or Username|Password">
+                <button id="addAccount" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    Add Account
+                </button>
+            </div>
+        </div>
+
+        <div class="accounts-list" id="accountsList">
+        </div>
+
+        <div class="footer">
+            <button id="importAccounts" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                Import
+            </button>
+            <button id="exportAccounts" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Export
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Edit Account</h2>
+            <div class="input-group">
+                <label for="editUsername">Username</label>
+                <input type="text" id="editUsername" placeholder="Username">
+            </div>
+            <div class="input-group">
+                <label for="editPassword">Password</label>
+                <input type="password" id="editPassword" placeholder="Password">
+            </div>
+            <div class="input-group">
+                <label for="editCookie">Cookie</label>
+                <textarea id="editCookie" placeholder="Roblox security cookie" rows="4"></textarea>
+            </div>
+            <div id="nicknameGroup" class="input-group hidden">
+                <label for="editNickname">Nickname</label>
+                <input type="text" id="editNickname" placeholder="Account nickname">
+            </div>
+            <div class="modal-actions">
+                <button id="editCancel" class="btn btn-secondary">Cancel</button>
+                <button id="editSave" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Overlay -->
+    <div id="alertOverlay" class="alert-overlay hidden">
+        <div class="alert-content">
+            <p id="alertMessage"></p>
+            <button id="alertOk" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <div class="thanks-section">
+        <a href="https://selective.lol" target="_blank" class="thanks-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ff6b6b" stroke="#ff6b6b" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span>Made by Selective Team</span>
+        </a>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+</body>
+</html>
