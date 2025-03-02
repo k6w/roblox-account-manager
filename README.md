@@ -1,93 +1,126 @@
 # Roblox Account Manager
 
-A Chrome extension for securely managing multiple Roblox accounts with fast account switching capabilities.
+A Chrome extension for efficiently managing multiple Roblox accounts with secure login capabilities.
 
 ![Roblox Account Manager](icons/icon128.png)
 
+## Overview
+
+Roblox Account Manager allows you to store and quickly switch between multiple Roblox accounts. It offers both cookie-based and credential-based authentication, with a clean and intuitive user interface designed for ease of use.
+
 ## Features
 
-### Account Management
-- **Store Multiple Accounts**: Securely save usernames, passwords, and cookies
-- **Quick Login**: Switch between accounts with a single click
-- **Nickname Support**: Add custom nicknames to easily identify your accounts
-- **Visual Indicators**: At-a-glance badges show which accounts have cookies or passwords
+- **Multiple Authentication Methods**:
+  - Username/password login
+  - Cookie-based authentication
+  - Combined authentication (fallback from cookie to credentials)
 
-### Authentication Methods
-- **Cookie-Based Authentication**: Instantly login via secure cookie (fastest method)
-- **Credential-Based Authentication**: Automatic form filling when cookie authentication fails
-- **Fallback Mechanism**: Tries username/password if cookie login fails (* May need to resolve captcha manually when this happens)
+- **Account Management**:
+  - Add accounts with format: `Username|Password` or `Username|Password|Cookie`
+  - Edit account details (username, password, cookie, nickname)
+  - Delete accounts
+  - One-click login to any stored account
 
-### Import/Export
-- **Account Backup**: Export all your stored accounts to a text file
-- **Easy Restoration**: Import accounts from previously exported files
-- **Format Compatibility**: Supports multiple input formats for flexibility
+- **Backup & Restore**:
+  - Import accounts from text file
+  - Export accounts to text file
+  - Format compatibility with common Roblox tools
 
-### Security
-- **Local Storage**: All account data is stored locally in your browser
-- **Cookie Validation**: Built-in validation of Roblox security cookie format
-- **No Remote Servers**: Your account data never leaves your computer
+- **Current Account Handling**:
+  - Save currently logged-in account with "Save Current" button
+  - Automatic cookie extraction
+
+- **User Interface**:
+  - Clean dark theme interface
+  - Visual indicators for account types (cookie badge, password badge)
+  - Helpful tooltips for input formats
+  - Confirmation dialogs for important actions
+  - Status notifications
+
+- **Security**:
+  - Local storage of credentials (not transmitted to external servers)
+  - Cookie validation before saving
+
+## Implementation Details
+
+### Core Components
+
+1. **AccountManager**: Main class that handles the user interface and account operations
+   - Account storage and retrieval via Chrome storage API
+   - UI rendering and event handling
+   - Import/export functionality
+   - Modal and notification systems
+
+2. **CookieHandler**: Specialized module for cookie manipulation
+   - Multiple cookie setting strategies (Chrome API, document.cookie)
+   - Cookie validation and verification
+   - Cookie extraction from current session
+
+3. **[Background Service](background.js)**: Extension's background process
+   - Initializes cookie handler
+   - Handles background messaging
+   - Monitors cookie changes
+
+4. **[Content Script](content.js)**: Injected into Roblox pages
+   - Automated form filling for credential login
+   - Direct cookie manipulation in page context
+   - Login process monitoring
+
+### Technical Implementation
+
+- **Module System**: Uses ES6 modules for code organization
+- **Chrome API Integration**:
+  - `chrome.storage.local` for storing accounts
+  - `chrome.cookies` API for cookie manipulation
+  - `chrome.tabs` API for tab interaction
+  - `chrome.runtime` messaging for component communication
+- **Modern UI**: Custom CSS with animations, responsive design, and visual feedback
+- **Error Handling**: Comprehensive error handling with user-friendly messages
+- **Debug Mode**: Built-in debug logging system for troubleshooting
 
 ## Installation
 
-1. Download the extension files
+1. Download or clone this repository
 2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable "Developer Mode" by clicking the toggle in the top right
-4. Click "Load Unpacked" and select the extension folder
-5. The extension icon will appear in your browser toolbar
+3. Enable "Developer Mode" (toggle in the top-right corner)
+4. Click "Load Unpacked" and select the extension directory
+5. The extension icon should appear in your browser toolbar
 
 ## Usage
 
 ### Adding Accounts
 
-You can add accounts in several ways:
+1. Click the extension icon to open the popup
+2. Enter account details in the input field using one of these formats:
+   - `Username|Password` - For credential login
+   - `Username|Password|Cookie` - For cookie login with credential fallback
+3. Click "Add Account" or press Enter
 
-1. **Manual Entry**: Enter account details in one of these formats:
-   - `username|password` - Basic login credentials
-   - `username|password|cookie` - With cookie for faster login
-   - `nickname|username|password|cookie` - Full details with custom nickname
+### Logging Into an Account
 
-2. **Save Current Account**: When logged into Roblox, click "Save Current" to store the active session
+1. Navigate to [Roblox.com](https://www.roblox.com/)
+2. Open the extension popup
+3. Click the login button (arrow icon) next to the desired account
 
-3. **Import**: Click "Import" to load accounts from a text file
+### Saving Current Account
 
-### Switching Accounts
+1. While logged into Roblox, click the extension icon
+2. Click "Save Current" button at the top
+3. Add a nickname if desired (especially for cookie-only accounts)
+4. Click "Save"
 
-1. Click the extension icon to open the account manager
-2. Find the account you want to use
-3. Click the login button (arrow icon)
-4. The extension will automatically log you in using the stored credentials
+### Import/Export
 
-### Managing Accounts
+- **Import**: Click the "Import" button and select a text file with accounts
+- **Export**: Click the "Export" button to download all accounts as a text file
 
-- **Edit**: Click the pencil icon to modify account details or add a nickname
-- **Delete**: Click the trash icon to remove an account
-- **Export**: Click "Export" to save all accounts to a text file
+## Security Considerations
 
-## FAQ
-
-**Q: Is this safe to use?**  
-A: Yes. All data is stored locally in your browser and never sent to any third-party servers.
-
-**Q: Will this get my Roblox account banned?**  
-A: No. The extension uses standard login methods and doesn't violate Roblox's Terms of Service.
-
-**Q: Can I use this on multiple computers?**  
-A: Yes. Use the Export feature on one computer and Import on another.
-
-**Q: What if my cookie expires?**  
-A: The extension will automatically fall back to username/password login if available.
-
-## Troubleshooting
-
-- **Login fails**: Make sure you're on a Roblox website before attempting to login
-- **Cookie not working**: Cookies may expire; try updating it or using username/password
-- **Import not working**: Ensure your import file uses the correct format
+- Your account credentials and cookies are stored locally in your browser
+- No data is transmitted to external servers
+- When sharing your computer, remember that anyone with access to your Chrome profile can access your stored accounts
+- Cookie format validation ensures proper Roblox cookie structure
 
 ## Credits
 
-Developed with ❤️ by the Selective Team  
-[https://selective.lol](https://selective.lol)
-
-## Disclaimer
-
-This extension is not affiliated with, endorsed by, or related to Roblox Corporation.
+Made by Selective Team
