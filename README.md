@@ -4,6 +4,10 @@ A Chrome extension for efficiently managing multiple Roblox accounts with secure
 
 ![Roblox Account Manager](icons/icon128.png)
 
+## Preview
+
+![Extension Preview](assets/preview.png)
+
 ## Overview
 
 Roblox Account Manager allows you to store and quickly switch between multiple Roblox accounts. It offers both cookie-based and credential-based authentication, with a clean and intuitive user interface designed for ease of use.
