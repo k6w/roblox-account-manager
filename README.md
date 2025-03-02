@@ -1,4 +1,4 @@
-Collecting workspace information# Roblox Account Manager
+# Roblox Account Manager
 
 A Chrome extension for securely managing multiple Roblox accounts with fast account switching capabilities.
 
@@ -15,7 +15,7 @@ A Chrome extension for securely managing multiple Roblox accounts with fast acco
 ### Authentication Methods
 - **Cookie-Based Authentication**: Instantly login via secure cookie (fastest method)
 - **Credential-Based Authentication**: Automatic form filling when cookie authentication fails
-- **Fallback Mechanism**: Automatically tries username/password if cookie login fails
+- **Fallback Mechanism**: Tries username/password if cookie login fails (* May need to resolve captcha manually when this happens)
 
 ### Import/Export
 - **Account Backup**: Export all your stored accounts to a text file
